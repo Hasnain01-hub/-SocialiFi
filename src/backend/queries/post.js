@@ -40,16 +40,42 @@ router.get('/posts/:uid', async (req, res) => {
       res.status(404).json({message: 'No Posts Found'});
     } else {
       res.status(203).json({doc});
+      console.log("hello :::::::::",res.json({doc}));
     }
   });
 });
 
-//get user Date
+//Showings Users of App
+router.get('/users', (req, res) => {
+  const usersData = User.find()
+    .then((doc) => {
+      if (!doc) {
+      } else {
+        res.json(doc);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({error: 'No Data Found'});
+    });
+});
 
-//home page post 
-router.get('/posts', async (req, res) => res.json(await Post.find({}).sort({ createdAt: -1 }).exec()));
-
-
+//home page post
+router.get('/', async (req, res) => {
+  const posts = Post.aggregate([
+    {
+      $lookup: {
+        from: 'users',
+        localField: 'username',
+        foreignField: 'username',
+        as: 'user_details',
+      },
+    },
+  ])
+    .sort({createdAt: -1})
+    .then((doc) => {
+      res.json({doc});
+    });
+});
 
 router.get('/:uid', async (req, res) => {
   const Data = {
@@ -94,6 +120,22 @@ router.post('/user_pic', async (req, res) => {
     })
     .catch((err) => {
       res.status(500).json({message: 'Error'});
+    });
+});
+
+//Get Single Post
+router.get('/p-self/:postid', (req, res) => {
+  const post = req.params.postid;
+  const postdata = Post.findById(post)
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'Post Not Found'});
+      } else {
+        res.status(201).json(doc);
+      }
+    })
+    .catch((err) => {
+      res.status(404).json({message: 'Post Not Found'});
     });
 });
 
