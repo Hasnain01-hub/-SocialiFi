@@ -4,6 +4,8 @@
 ### Team name: Dark Coders
 
 ## Team members
+* Adil Khatri - adilaqzma@gmail.com
+* Om Jadhav - omjadhav963@gmail.com
 * Ronak Lala - ronaklala2010@gmail.com
 * Hasnain Sayyed - hasnainsayyed833@gmail.com
 
@@ -16,7 +18,7 @@
 
 
 ## Links
-* GitHub Repo link: [Link to repository](https://github.com/Hasnain01-hub/SocialiFi)
+* GitHub Repo link: [Link to repository](https://github.com/Hasnain01-hub/-SocialiFi)
 
 
 ## Technology stack
@@ -30,6 +32,7 @@ Tools and technologies that you learnt and used in the project.
 5. Firebase 
 6. Moralis
 7. Rarible Laziminting NFTs
+8. Cloudinary
 
 ## Applications
 * Users can connect with the other users virtually and can communicate with them via chats.
