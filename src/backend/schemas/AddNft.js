@@ -4,9 +4,8 @@ const addnftSchema = mongoose.Schema(
   {
     username: String,
     wallet: String,
-    description: String,
+    ethereum:Number,
     image: String,
-    token_name: String,
   },
   {timestamps: {type: Number, default: new Date().getTime()}}
 );
