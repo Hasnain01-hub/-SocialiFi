@@ -1,8 +1,11 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const Post = require('../schemas/postSchema');
 const AddNFT = require('../schemas/AddNft');
-
+const Comment = require('./../schemas/commentSchema');
 const User = require('../schemas/userSchema');
+const Transaction = require('../schemas/TransactionSchema');
 const router = express.Router();
 
 //Creating a Post
@@ -20,9 +23,10 @@ router.post('/create-post', (req, res) => {
 });
 
 
+
 router.post('/MarketPlace', (req, res) => {
-  const {image,ethereum, wallet, username} = req.body;
-  const post = new AddNFT({image, wallet, username, ethereum});
+  const {image, token_name, wallet, username, description} = req.body;
+  const post = new AddNFT({image, wallet, username, token_name, description});
   post
     .save()
     .then(() => {
@@ -40,7 +44,18 @@ router.get('/posts/:uid', async (req, res) => {
       res.status(404).json({message: 'No Posts Found'});
     } else {
       res.status(203).json({doc});
-      console.log("hello :::::::::",res.json({doc}));
+    }
+  });
+});
+
+router.get('/transcation/:uid', async (req, res) => {
+  const to = req.params.uid;
+  const user_posts = await Transaction.find({to: to}).then((doc) => {
+    if (!doc) {
+      res.status(404).json({message: 'No transcation Found'});
+    } else {
+      res.status(203).json({doc});
+      console.log('hello :::::::::', res.json({doc}));
     }
   });
 });
@@ -128,15 +143,52 @@ router.get('/p-self/:postid', (req, res) => {
   const post = req.params.postid;
   const postdata = Post.findById(post)
     .then((doc) => {
-      if (!doc) {
-        res.status(404).json({message: 'Post Not Found'});
-      } else {
-        res.status(201).json(doc);
-      }
+      const userdata = User.find({username: doc.username}).then((doc2) => {
+        if (!doc || !doc2) {
+          res.status(404).json({message: 'Post Not Found'});
+        } else {
+          res.status(201).json([doc, doc2]);
+        }
+      });
     })
     .catch((err) => {
       res.status(404).json({message: 'Post Not Found'});
     });
 });
+
+//Post a comment
+router.post('/add-comment', async (req, res) => {
+  try {
+    const {content, user, postId} = req.body;
+
+    const post = await Post.findById(postId).exec();
+    if (!post) return res.status(400).json({msg: 'This Post does not exist.'});
+
+    const newComment = new Comment({
+      content,
+      user,
+      postId,
+    });
+
+    await Post.findOneAndUpdate(
+      {_id: postId},
+      {
+        $push: {comment: newComment._id},
+      },
+      {new: true}
+    );
+
+    await newComment.save();
+
+    res.json({
+      newComment,
+    });
+  } catch (err) {
+    return res.status(500).json({msg: err.message});
+  }
+});
+
+
+
 
 module.exports = router;

@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, {useEffect, useImperativeHandle, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SyncLoader} from 'react-spinners';
 import './users.scss';
 import {css} from '@emotion/react';
+import {count} from '../../backend/schemas/userSchema';
 
 const ShowUsersList = (props) => {
   const [users, setUsers] = useState({});
   const [loading, setLoading] = useState(true);
-
+  // var count=0;
   const override = css`
     display: block;
     margin: 0 auto;
@@ -18,7 +19,16 @@ const ShowUsersList = (props) => {
     username: props.username,
     wallet: props.wallet,
   };
-
+  function post_count(username1, count) {
+    // posts.filter(username => username.includes(username1))
+    posts.map((username) => {
+      if (username.username === username1) {
+        count = count + 1;
+      }
+    });
+    return count;
+  }
+  const [posts, setPosts] = useState([]);
   const getUsersData = async () => {
     await axios
       .get('http://localhost:5001/users')
@@ -36,9 +46,17 @@ const ShowUsersList = (props) => {
     const color = '#' + Math.random().toString(16).substr(-6);
     return color;
   };
+  const getPosts = async () => {
+    await axios.get('http://localhost:5001/').then((res) => {
+      setLoading(false);
+      setPosts(res.data.doc);
+      console.log(posts);
+    });
+  };
 
   useEffect(() => {
     getUsersData();
+    getPosts();
   }, []);
 
   return (
@@ -96,17 +114,18 @@ const ShowUsersList = (props) => {
                             <span>{user.wallet}</span>
                             <div className="counts">
                               <span>
-                                16
+                                {post_count(user.username, (count = 0))}
                                 <br />
                                 Posts
                               </span>
                               <span>
                                 32
-                                <br /> Followers
+                                <br />
+                                Followers
                               </span>
                             </div>
                             <center>
-                              <a href={'/profile/' + user.wallet}>
+                              <a href={`/${user.wallet}`}>
                                 <button>View Profile</button>
                               </a>
                             </center>

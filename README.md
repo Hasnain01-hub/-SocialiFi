@@ -1,90 +1,70 @@
-# SocialiFi - Be simple, Be Social
-## For a better virtual experience!
+# Getting Started with Create React App
 
-### Team name: Dark Coders
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Team members
-* Adil Khatri - adilaqzma@gmail.com
-* Om Jadhav - omjadhav963@gmail.com
-* Ronak Lala - ronaklala2010@gmail.com
-* Hasnain Sayyed - hasnainsayyed833@gmail.com
+## Available Scripts
 
-## Note
-* To mint an NFT you must switch to Rinkeby Test Network
+In the project directory, you can run:
 
-## Description
+### `npm start`
 
-* SocialiFi refers to the means of interactions among people in which they create, share, and/or exchange information and ideas in virtual communities and networks
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Links
-* GitHub Repo link: [Link to repository](https://github.com/Hasnain01-hub/-SocialiFi)
+### `npm test`
 
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## Technology stack
+### `npm run build`
 
-Tools and technologies that you learnt and used in the project.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-1. M - Mongo DB
-2. E - Express JS
-3. R - React JS
-4. N - Node JS
-5. Firebase 
-6. Moralis
-7. Rarible Laziminting NFTs
-8. Cloudinary
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Applications
-* Users can connect with the other users virtually and can communicate with them via chats.
-* One can create groups and oher user can join that group.
-* Users can give a tip through his metamask wallet to the shared post were the eth will be credited to the owner of that post.
-* Users can like, comment and save the post.
-* Users can mint the nft and can view it on rinkeby.
-* One can search the user by entering his name. 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Future scope
-Adding Group Chats for Groups and Updating Groups Description and Group Information and Making a Sale order from Minted NFT from our Platform, Adding an Ecommerce System where user can list and purchase items with cryptocurrency on Block Chain Platforms
+### `npm run eject`
 
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Screenshots
-| ![](Images/Register.png) | ![](Images/Login.png) | ![](Images/home.png) | ![](Images/Nft.png) |
-| :-------------: | :-------------:  | :-------------:  | :-------------:  |
-|     Register Page     |    Login Page   |    Home Page     |     NFT on rinkeby     |
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-| ![](Images/userprofile.png) | ![](Images/userlist.png) | ![](Images/grouplist.png) | ![](Images/groupdisc.png) |
-| :-------------: | :-------------:  | :-------------:  | :-------------:  | 
-|     User Profile Page     |    All User   |    Group     |     Group Description     |
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-| ![](Images/message.png) | ![](Images/nftpage.png) | ![](Images/postdesc.png) | ![](Images/search.png) |
-| :-------------: | :-------------:  | :-------------:  | :-------------:  | 
-|     Message Page     |    NFT Mint   |    Post Detail     |     Search     |
+## Learn More
 
-| ![](Images/transcation.jpeg) |  
-| :-------------: | 
-|     Transcation Page     | 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-<!-- - **Admin Panel**
+### Code Splitting
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075129.png" width="1000">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075227.png" width="1000">
+### Analyzing the Bundle Size
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075259.png" width="1000">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075527.png" width="1000"> -->
+### Making a Progressive Web App
 
-<!-- - **Model that will extract the submitiles from the YouTube Video and generate subjetive questions** -->
- 
-<!-- <img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_model_1.png" width="1000">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_2.png" width="1000">
+### Advanced Configuration
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_3.png" width="1000">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_4.png" width="1000">
+### Deployment
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_5.png" width="1000">
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_6.png" width="1000"> -->
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
