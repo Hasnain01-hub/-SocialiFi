@@ -19,7 +19,7 @@ const Profile = () => {
 
   return (
     <>
-      {console.log(uid.uid)}
+      {/* {console.log(uid.uid)} */}
       <Header />
       <section className="wrapper">
         <section className="container">
@@ -32,8 +32,9 @@ const Profile = () => {
             <ViewProfile />
             <ProfileMenu
               username={user.username}
-              uid={uid.uid}
+              uid={user._id}
               wallet={user.wallet}
+              userid={uid.uid}
             />
           </div>
         </section>

@@ -22,8 +22,7 @@ router.post('/create-post', (req, res) => {
     });
 });
 
-
-
+//Adding a NFT Minted Data in Backend
 router.post('/MarketPlace', (req, res) => {
   const {image, token_name, wallet, username, description} = req.body;
   const post = new AddNFT({image, wallet, username, token_name, description});
@@ -37,6 +36,7 @@ router.post('/MarketPlace', (req, res) => {
     });
 });
 
+//Getting Posts for a particular User
 router.get('/posts/:uid', async (req, res) => {
   const wallet = req.params.uid;
   const user_posts = await Post.find({wallet: wallet}).then((doc) => {
@@ -48,16 +48,18 @@ router.get('/posts/:uid', async (req, res) => {
   });
 });
 
+//Getting Transactions for a particular User
 router.get('/transcation/:uid', async (req, res) => {
-  const to = req.params.uid;
-  const user_posts = await Transaction.find({to: to}).then((doc) => {
-    if (!doc) {
-      res.status(404).json({message: 'No transcation Found'});
-    } else {
-      res.status(203).json({doc});
-      console.log('hello :::::::::', res.json({doc}));
-    }
-  });
+  const user_id = req.params.uid;
+  const user_transaction = await Transaction.find({userId: user_id})
+    .sort({createdAt: -1})
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'No transcation Found'});
+      } else {
+        res.status(203).json({doc});
+      }
+    });
 });
 
 //Showings Users of App
@@ -65,6 +67,35 @@ router.get('/users', (req, res) => {
   const usersData = User.find()
     .then((doc) => {
       if (!doc) {
+      } else {
+        res.json(doc);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({error: 'No Data Found'});
+    });
+});
+
+//Function for search of users
+router.get('/search', (req, res) => {
+  const usersData = User.find()
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'No transcation Found'});
+      } else {
+        res.json(doc);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({error: 'No Data Found'});
+    });
+});
+
+router.get('/posts', async (req, res) => {
+  const posts = await Post.find()
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'No Posts Found'});
       } else {
         res.json(doc);
       }
@@ -92,6 +123,7 @@ router.get('/', async (req, res) => {
     });
 });
 
+//Getting users profile Details
 router.get('/:uid', async (req, res) => {
   const Data = {
     users: {},
@@ -188,7 +220,18 @@ router.post('/add-comment', async (req, res) => {
   }
 });
 
-
-
+//Show users Self-NFTS
+router.get('/Self-NFT/:uid', async (req, res) => {
+  const userid = req.params.uid;
+  const selfnfts = AddNFT.find({wallet: userid})
+    .sort({createdAt: -1})
+    .then((doc) => {
+      if (!doc) {
+        res.status(500);
+      } else {
+        res.json(doc);
+      }
+    });
+});
 
 module.exports = router;
