@@ -6,6 +6,7 @@ const AddNFT = require('../schemas/AddNft');
 const Comment = require('./../schemas/commentSchema');
 const User = require('../schemas/userSchema');
 const Transaction = require('../schemas/TransactionSchema');
+const SavePost = require('../schemas/Save');
 const router = express.Router();
 
 //Creating a Post
@@ -19,6 +20,34 @@ router.post('/create-post', (req, res) => {
     })
     .catch(() => {
       res.status(500).json({message: 'Internal Server Error'});
+    });
+});
+
+//Deleting a Post
+router.delete('/deletepost/:postId', (req, res) => {
+  Post.findOne({_id: req.params.postId})
+    .deleteOne()
+    .then(() => {
+      res.status(201).json({message: 'Post Deleted Successfully'});
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({message: 'Internal Server Error cannot delete postc'});
+    });
+});
+
+//Delete a Comment
+router.delete('/delete-comment/:postid', (req, res) => {
+  Comment.findOne({postId: req.params.postid})
+    .deleteOne()
+    .then(() => {
+      res.status(201).json({message: 'Comment Deleted Successfully'});
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({message: 'Internal Server Error cannot delete Comment'});
     });
 });
 
@@ -36,12 +65,36 @@ router.post('/MarketPlace', (req, res) => {
     });
 });
 
+router.post('/save', (req, res) => {
+  const {postid, username, userid, image} = req.body;
+  const post = new SavePost({postid, username, userid, image});
+  post
+    .save()
+    .then(() => {
+      res.status(201).json({message: 'Post save Successfully'});
+    })
+    .catch(() => {
+      res.status(500).json({message: 'Internal Server Error'});
+    });
+});
+
 //Getting Posts for a particular User
 router.get('/posts/:uid', async (req, res) => {
   const wallet = req.params.uid;
   const user_posts = await Post.find({wallet: wallet}).then((doc) => {
     if (!doc) {
       res.status(404).json({message: 'No Posts Found'});
+    } else {
+      res.status(203).json({doc});
+    }
+  });
+});
+
+//Getting Save Posts data
+router.get('/savepost', async (req, res) => {
+  const user_posts = await SavePost.find().then((doc) => {
+    if (!doc) {
+      res.status(404).json({message: 'No saved Posts Found'});
     } else {
       res.status(203).json({doc});
     }
@@ -62,6 +115,34 @@ router.get('/transcation/:uid', async (req, res) => {
     });
 });
 
+//Getting user saved post
+router.get('/saved-post/:username', async (req, res) => {
+  const username = req.params.username;
+  const user_transaction = await SavePost.find({username: username})
+    .sort({createdAt: -1})
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'No Saved post Found'});
+      } else {
+        res.status(203).json({doc});
+      }
+    });
+});
+//delete saved post
+
+router.delete('/delete-savedpost/:postid', (req, res) => {
+  SavePost.findOne({postid: req.params.postid})
+    .deleteOne()
+    .then(() => {
+      res.status(201).json({message: 'Saved Post Deleted Successfully'});
+    })
+    .catch(() => {
+      res
+        .status(500)
+        .json({message: 'Internal Server Error cannot delete Saved Post'});
+    });
+});
+
 //Showings Users of App
 router.get('/users', (req, res) => {
   const usersData = User.find()
@@ -73,6 +154,20 @@ router.get('/users', (req, res) => {
     })
     .catch((err) => {
       res.status(500).json({error: 'No Data Found'});
+    });
+});
+
+//get selected user
+router.get('/getusers/:wallet', async (req, res) => {
+  const userwallet = req.params.wallet;
+  const user_transaction = await User.find({wallet: userwallet})
+    .sort({createdAt: -1})
+    .then((doc) => {
+      if (!doc) {
+        res.status(404).json({message: 'No Saved post Found'});
+      } else {
+        res.status(203).json({doc});
+      }
     });
 });
 
@@ -107,6 +202,7 @@ router.get('/posts', async (req, res) => {
 
 //home page post
 router.get('/', async (req, res) => {
+  const doc = [];
   const posts = Post.aggregate([
     {
       $lookup: {
@@ -116,11 +212,23 @@ router.get('/', async (req, res) => {
         as: 'user_details',
       },
     },
-  ])
-    .sort({createdAt: -1})
-    .then((doc) => {
+  ]).then((data) => {
+    doc.push(...data);
+    const nft_posts = AddNFT.aggregate([
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'username',
+          foreignField: 'username',
+          as: 'user_details',
+        },
+      },
+    ]).then((results) => {
+      doc.push(...results);
+      doc.sort((a, b) => b.createdAt - a.createdAt);
       res.json({doc});
     });
+  });
 });
 
 //Getting users profile Details

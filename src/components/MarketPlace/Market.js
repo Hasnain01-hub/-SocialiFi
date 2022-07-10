@@ -1,7 +1,10 @@
-import React, {useEffect, useState} from 'react';
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/img-redundant-alt */
+/* eslint-disable react/jsx-no-target-blank */
+import React, { useEffect, useState } from 'react';
 import './products.scss';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -46,8 +49,6 @@ const Market = (props) => {
                     ))}
                   </div>
                   <img src={nft.image} alt="Nft Image" />
-
-                  <div className="buttons">{nft.description}</div>
                   <a
                     target="_blank"
                     href={

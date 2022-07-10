@@ -1,9 +1,12 @@
+/* eslint-disable eqeqeq */
 import axios from 'axios';
 import React, {useState} from 'react';
 import {toast, ToastContainer} from 'react-toastify';
 import './sass/main.scss';
 import {Link, useNavigate} from 'react-router-dom';
 import {TextField} from '@mui/material';
+import {db} from '../firebase';
+
 const Register = () => {
   const navigate = useNavigate();
   let axiosConfig = {
@@ -21,6 +24,12 @@ const Register = () => {
     email: '',
     username: '',
   });
+
+  const data = {
+    id: user.wallet,
+    email: user.email,
+    name: user.username,
+  };
 
   //Handling Inputs
   const handleChange = (e) => {
@@ -50,6 +59,8 @@ const Register = () => {
     } else if (user.wallet === '') {
       ConnectWallet();
     } else {
+      db.collection('users').add(data);
+      console.log(data);
       axios
         .post('http://localhost:5001/register', user, axiosConfig)
         .then((res) => {
@@ -111,6 +122,13 @@ const Register = () => {
     user.wallet = account;
     toast.success(account + 'Successfully Connected', {
       toastId: customId,
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
     console.log(user);
   };

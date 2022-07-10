@@ -1,13 +1,16 @@
+/* eslint-disable react/jsx-no-target-blank */
+
 import React from 'react';
 import './profile.scss';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import CurrencyPoundIcon from '@mui/icons-material/CurrencyPound';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import {Divider} from '@mui/material';
+import { Divider } from '@mui/material';
 
 const ProfileMenu = (props) => {
+  console.log(props.userid);
   return (
     <>
       <ul>
@@ -24,10 +27,17 @@ const ProfileMenu = (props) => {
           <li>Followers</li>
         </a>
 
-        <a href={'/transcation/' + props.uid}>
-          <li>Transactions</li>
-        </a>
+        {props.wallet !== props.userid ? (
+          <></>
+        ) : (
+          <a href={'/transcation/' + props.uid}>
+            <li>Transactions</li>
+          </a>
+        )}
       </ul>
+      <br />
+      <br />
+      <br />
       <Divider />
       <center>
         <h2>View Profile Also At</h2>

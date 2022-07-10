@@ -4,9 +4,9 @@
 ### Team name: Dark Coders
 
 ## Team members
-* Adil Khatri - adilaqzma@gmail.com
-* Om Jadhav - omjadhav963@gmail.com
 * Ronak Lala - ronaklala2010@gmail.com
+* Om Jadhav - omjadhav963@gmail.com
+* Adil Khatri - adilaqzma@gmail.com
 * Hasnain Sayyed - hasnainsayyed833@gmail.com
 
 ## Note
@@ -33,6 +33,7 @@ Tools and technologies that you learnt and used in the project.
 6. Moralis
 7. Rarible Laziminting NFTs
 8. Cloudinary
+9. SCSS
 
 ## Applications
 * Users can connect with the other users virtually and can communicate with them via chats.
@@ -64,27 +65,3 @@ Adding Group Chats for Groups and Updating Groups Description and Group Informat
 | :-------------: | 
 |     Transcation Page     | 
 
-
-<!-- - **Admin Panel**
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075129.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075227.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075259.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/Screenshot%202022-03-26%20075527.png" width="1000"> -->
-
-<!-- - **Model that will extract the submitiles from the YouTube Video and generate subjetive questions** -->
- 
-<!-- <img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_model_1.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_2.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_3.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_4.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_5.png" width="1000">
-
-<img src="https://github.com/abby3010/GoalTube/blob/main/Screenshots%20-%20GoalTube/ML_Model_6.png" width="1000"> -->

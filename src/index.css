@@ -12,5 +12,18 @@ code {
     monospace;
 }
 
-@tailwind components;
-@tailwind utilities;
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-1: #242526;
+  --color-2: white;
+  --color-3: #0084ff;
+  --color-4: grey;
+  --color-5: #eb4034;
+  --color-6: #333;
+}
+
+
+
